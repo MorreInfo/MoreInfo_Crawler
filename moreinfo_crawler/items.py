@@ -13,3 +13,12 @@ class JianShuArticleItem(scrapy.Item):
     description = scrapy.Field()
     content = scrapy.Field()
     origin_url = scrapy.Field()
+
+class DouBanBookSearchItem(scrapy.Item):
+    cover_url = scrapy.Field()
+    score = scrapy.Field()
+    score_num = scrapy.Field()
+    url = scrapy.Field()
+    abstract = scrapy.Field()
+    title = scrapy.Field()
+    id = scrapy.Field()

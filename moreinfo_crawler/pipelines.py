@@ -1,7 +1,10 @@
 import json
 import redis as redis
 
+from moreinfo_crawler.items import JianShuArticleItem, DouBanBookSearchItem
+
 JIANSHU_ARTICLE_KEY = 'JIANSHU_ARTICLE'
+DOUBAN_BOOK_SEARCH_KEY = 'DOUBAN_BOOK_SEARCH'
 
 class RedisPipeline:
     def open_spider(self, spider):
@@ -17,9 +20,16 @@ class RedisPipeline:
         # 将item转换成字典
         item_json = json.dumps(dict(item))
         # 将数据插入到集合
-        self.db_conn.rpush(JIANSHU_ARTICLE_KEY, item_json)
+        if isinstance(item,JianShuArticleItem):
+            self.db_conn.rpush(JIANSHU_ARTICLE_KEY, item_json)
+        elif isinstance(item,DouBanBookSearchItem):
+            key = f"{DOUBAN_BOOK_SEARCH_KEY}_{spider.keyword}_{spider.start}"
+            self.db_conn.rpush(key, item_json)
+
         return item
 
     def close_spider(self, spider):
         # 关闭连接
+
         self.db_conn.connection_pool.disconnect()
+
