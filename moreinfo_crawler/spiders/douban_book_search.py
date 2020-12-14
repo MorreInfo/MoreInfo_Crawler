@@ -16,10 +16,6 @@ class DoubanBookSearchSpider(scrapy.Spider):
         self.start = start
         self.start_urls.append(f'https://search.douban.com/book/subject_search?search_text={self.keyword}&cat=1001&start={self.start}')
 
-    # @property
-    # def keyword(self):
-    #     return self.keyword
-
     def parse(self, response):
         r = re.search('window.__DATA__ = "([^"]+)"', response.text).group(1)
         # 导入js

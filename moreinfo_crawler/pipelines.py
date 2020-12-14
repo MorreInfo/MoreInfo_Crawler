@@ -30,6 +30,7 @@ class RedisPipeline:
 
     def close_spider(self, spider):
         # 关闭连接
-
         self.db_conn.connection_pool.disconnect()
+
+
 

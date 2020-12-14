@@ -22,3 +22,18 @@ class DouBanBookSearchItem(scrapy.Item):
     abstract = scrapy.Field()
     title = scrapy.Field()
     id = scrapy.Field()
+
+class DoubanBook250Item(scrapy.Item):
+    title = scrapy.Field()
+    url = scrapy.Field()
+    cover_url = scrapy.Field()
+    # orginal_title = scrapy.Field()
+    author = scrapy.Field()
+    publisher = scrapy.Field()
+    # release_time = scrapy.Field()
+    # price = scrapy.Field()
+    score = scrapy.Field()
+    score_num = scrapy.Field()
+    simple_comment = scrapy.Field()
+
+
